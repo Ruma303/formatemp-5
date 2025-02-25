@@ -190,8 +190,7 @@ public class Condizioni {
 			System.out.println("Scegli un altro numero da 1 a 7 o -1 per uscire:");
 		} while (!exit2);
 		
-		
-		
+
 
 		// --- Labeled Statement
 		System.out.println("\n\nLabeled statement:");
