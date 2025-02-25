@@ -84,80 +84,128 @@ public class Condizioni {
             }
         }
 
-        scanner.close();
-    
-		
-		
-		
+
 	
         // --- Switch case
 		
-		System.out.println("\n\nSwitch case");
-
-
-		String fruit = "Cocomero"; // Prova tutti i valori dei case, o anche altri che non esistono
-
-		switch (fruit) { // Confrontiamo il valore della variabile fruit con i seguenti case
-
-		case "Mela": // Primo confronto
-			System.out.println("Il valore di fruit è Mela");
-			break; // Se il valore di fruit == "Mela", il codice uscirà dallo switch.
-
-		case "Pesca": // Secondo confronto
-			System.out.println("Il valore di fruit è Pesca");
-			break; // Se il valore di fruit == "Pesca", il codice uscirà dallo switch.
-
-		// Il primo modo per attivare delle istruzioni è definire più case, e le
-		// istruzioni e il break sono all'ultima
-		case "Banana":
-		case "Avocado":
-		case "Mango":
-		case "Fragola":
-		case "Papaya":
-			System.out.println("Il valore di fruit è un frutto tropicale");
-			break;
-
-		// Case constant list
-		// Il secondo modo per è definire un unico case con più valori da confrontare
-		// separati da virgole
-		case "Lamponi", "Fragoline di bosco", "Mirtilli":
-			System.out.println("Il valore di fruit è un frutto di bosco");
-			break;
-
-		default: // Opzionalmente possiamo aggiungere un caso base
-			System.out.println("Il valore di fruit non è tra i casi previsti");
-			break; // Quest'ultimo break è opzionale
-
-		// NON È CONSIGLIATO INSERIRE ALTRI CASI DOPO IL DEFAULT, ma si potrebbe fare.
-		case "Anguria":
-			fruit = "Mela";
-			break;
-		}
-
-		System.out.println("Siamo fuori dallo switch");
-		System.out.println("Il valore finale della variabile fruit è: " + fruit);
-
+        System.out.println("\n\nSwitch case:");
+		System.out.println("Benvenuto nel mercato ortofrutticolo.\nChiedi un frutto o digita \"q\" per uscire:");
+		Boolean exit = false;
+		do {
+			try {
+				String fruit = scanner.nextLine().trim();
+				
+				switch (fruit) { // Confrontiamo il valore della variabile fruit con i seguenti case
+			
+					case "Mela": // Primo confronto
+						System.out.println("Si, abbiamo le mele!");
+						break; // Se il valore di fruit == "Mela", il codice uscirà dallo switch.
+			
+					case "Pesca": // Secondo confronto
+						System.out.println("Abbiamo le pesce!");
+						break; // Se il valore di fruit == "Pesca", il codice uscirà dallo switch.
+			
+					// Il primo modo per attivare delle istruzioni è definire più case, e le
+					// istruzioni e il break sono all'ultima
+					case "Banana":
+					case "Avocado":
+					case "Mango":
+					case "Fragola":
+					case "Papaya":
+						System.out.println("Abbiamo qualsiasi frutto tropicale!");
+						break;
+			
+					// Case constant list
+					// Il secondo modo per è definire un unico case con più valori da confrontare
+					// separati da virgole
+					case "Lamponi", "Fragoline di bosco", "Mirtilli":
+						System.out.println("Abbiamo qualsiasi frutto di bosco!");
+						break;
+			
+					default: // Opzionalmente possiamo aggiungere un caso base
+						System.out.println("Mi spiace, non abbiamo quel frutto!");
+						break; // Quest'ultimo break è opzionale
+			
+					// NON È CONSIGLIATO INSERIRE ALTRI CASI DOPO IL DEFAULT, ma si potrebbe fare.
+					case "Anguria":
+						fruit = "Mela";
+						break;
+					
+					// Uscita dal loop
+					case "q":
+						exit = true;
+						break;
+					}
+				System.out.println("Hai scelto: " + fruit + ". Scegli un altro frutto o \"q\" per uscire:");
+				
+			} catch (Exception e) {
+				System.err.println("Errore durante la lettura del frutto.");
+	            scanner.nextLine(); // Ripristino scanner per evitare loop infinito
+			}
+		
+		} while (!exit);
+		
+		System.out.println("Sono 4000 euro. Paga in contanti?");
+		
+		
+		
 		// -- Switch expression
 
-		int x = 20;
-
-		String number = switch (x) {
-		case 10 -> "Dieci";
-		case 20 -> "Venti";
-		default -> {
-			System.out.println("Opzione di default.");
-			yield "Qualsiasi altro valore";
-		}
-		};
-
-		System.out.println(number);
+		System.out.println("\n\nSwitch expression:");
+		System.out.println("Che giorno è oggi? Indica un numero da 1 a 7 o digita -1 per uscire:");
+		
+		Boolean exit2 = false;
+		do {
+			try {
+				Integer scelta = scanner.nextInt();
+				scanner.nextLine();
+				// Altra sintassi: switch expression
+				// Consente di assegnare un valore ad una variabile utilizzando il pattern matching
+				
+				String giorno = switch (scelta) {
+					case 1 -> "Lunedì";
+					case 2 -> "Martedì";
+					case 3 -> "Mercoledì";
+					case 4 -> "Giovedì";
+					case 5 -> "Venerdì";
+					case 6 -> "Sabato";
+					case 7 -> "Domenica";
+					case -1 -> {
+		                yield "Arrivederci!";
+					}
+					default -> {
+						yield "Valori non validi!";
+					}
+				};
+		
+				if (giorno.equals("Arrivederci!") || giorno.equals("Valori non validi!")) {
+					System.out.println(giorno);
+					exit2 = true;
+				}
+				else System.out.println("Oggi è: " + giorno);
+			} catch (Exception e) {
+				System.err.println("Errore durante la lettura del numero.");
+                scanner.nextLine();
+			}
+			System.out.println("Scegli un altro numero da 1 a 7 o -1 per uscire:");
+		} while (!exit2);
+		
+		
+		
 
 		// --- Labeled Statement
-
+		System.out.println("\n\nLabeled statement:");
+		
+		// Java consente di etichettare costrutti condizionali e ciclici in un blocco di codice.
+		// Possiamo utilizzare una condizione che, una volta soddisfatta, utilizza break [etichetta]
+		// In modo da uscire dal blocco specificato con l'etichetta.'
+		
+		
 		// -- Esempio con costrutto if
 		int numero = 10;
 
-		controllo: { // Etichetta per il blocco di codice
+		 // Etichetta per il blocco di codice
+		controllo: {
 			if (numero % 2 == 0) {
 				System.out.println("Il numero è pari.");
 				break controllo; // Esce dal blocco 'controllo'
@@ -165,15 +213,16 @@ public class Condizioni {
 			System.out.println("Questo messaggio non verrà mai stampato.");
 		}
 
-		System.out.println("Fine del programma.");
+		System.out.println("Codice eseguito dopo esser usciti dal blocco 'controllo'.");
 
+		
+		
 		// -- Esempio con switch
 
 		int valore = 3;
 
 		elaborazione: {
 			System.out.println("Inizio elaborazione...");
-
 			switch (valore) {
 			case 1:
 				System.out.println("Caso 1");
@@ -187,10 +236,11 @@ public class Condizioni {
 			default:
 				System.out.println("Caso di default");
 			}
-
+			
 			System.out.println("Questa parte non viene eseguita se valore = 3.");
 		}
 
-		System.out.println("Elaborazione terminata.");
+			
+        scanner.close();
 	}
 }
