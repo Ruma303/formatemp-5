@@ -12,6 +12,7 @@ public class Cicli {
 		// Questo ciclo continua fino a quando la condizione sarà true.
 		// Vanno usate quindi condizioni che ritornano dei booleani come operatori logici e di confronto
 		// Ciclo con condizione prefissa
+		
 		while (count <= 10) {
 			// Istruzioni da eseguire nel ciclo
 			System.out.println("\tIstruzione numero: " + count);
@@ -29,6 +30,7 @@ public class Cicli {
 		
 		// Sono uguali al while, ma viene eseguito almeno una volta prima che la condizione sia verificata
 		// Ciclo con condizione postfissa
+		
 		do { 
 			System.out.println("\tValore count down: " + count1);
 			count1--;
@@ -63,6 +65,7 @@ public class Cicli {
 
 		// La sintassi consente di creare una singola variabile per ogni elemento dell'array
 		// Nel ciclo accediamo ad ogni elemento
+		
 		for (String element : myArray) {
 			System.out.println("\tValore attuale dell'elemento: " + element);
 		}
@@ -97,6 +100,19 @@ public class Cicli {
 		} // Fine ciclo esterno
 
 		System.out.println("\nSei fuori dal ciclo esterno...");
-	}
+		
 
+		
+		// Nested loops: Esempio tabelline
+		
+		for (int i = 1; i <= 10; i++) {
+			System.out.println("\nTabellina del " + i + ":");
+	              
+            	for (int k = 1; k <= 10; k++) {
+            		System.out.println("\t" + i + " x " + k + " = " + (i * k));
+            	}
+	        }
+        System.out.println("\nFine tabelline.");
+			
+	}
 }

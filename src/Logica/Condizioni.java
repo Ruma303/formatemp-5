@@ -12,26 +12,25 @@ public class Condizioni {
 		// Inizio blocco condizionale esterno if
 		if (val < 18) System.out.println("Avendo " + val + " anni, sei ancora minorenne. Non puoi votare!");
 		
-		// Blocco else esterno, fa riferimento all'opposto del primo blocco if
+		// Blocco else, fa riferimento all'opposto del primo blocco if
+		// Verrà eseguito solo se la condizione del primo blocco if non è vera
 		else System.out.println("Sei maggiorenne, puoi votare!");
 		
-
 		System.out.println("Codice eseguito dopo i blocchi condizionali\n\n");
 
-		
-		
-		// Possiamo valutare più condizioni con gli operatori logici (AND, OR, NOT) e di confronto.
 		
 
 		Scanner scanner = new Scanner(System.in);
 
         // Esempio: Gestione dell'età
+		
         while (true) {
             try {
                 System.out.println("Inserisci la tua età (-1 per uscire): ");
                 int age = scanner.nextInt();
                 scanner.nextLine(); // Pulisce il buffer
 
+                // Possiamo valutare più condizioni con gli operatori logici (AND, OR, NOT) e di confronto.
                 if (age == -1) {
                     System.out.println("Alla prossima!");
                     break;
@@ -54,7 +53,7 @@ public class Condizioni {
             } catch (Exception e) {
             	System.err.println("Errore durante la lettura dell'età.");
                 scanner.nextLine(); // Ripristino scanner per evitare loop infinito
-            }
+            } 
         }
 
         // Esempio: Gestione del nome
