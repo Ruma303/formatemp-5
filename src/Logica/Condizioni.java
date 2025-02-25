@@ -1,46 +1,99 @@
 package Logica;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Condizioni {
 
 	public static void main(String[] args) {
 
-		int myVal = 5;
+		int val = 5;
 
-		if (myVal < 10) { // Inizio blocco condizionale esterno if
-			System.out.println("La variabile myVal è inferiore alla condizione e vale: " + myVal);
-			myVal = 20;
+		// Inizio blocco condizionale esterno if
+		if (val < 18) System.out.println("Avendo " + val + " anni, sei ancora minorenne. Non puoi votare!");
+		
+		// Blocco else esterno, fa riferimento all'opposto del primo blocco if
+		else System.out.println("Sei maggiorenne, puoi votare!");
+		
 
-			if (myVal != 20)// Inizio blocco condizionale interno if
-				System.out.println("La variabile myVal è cambiata di valore. Ora vale 20!");
+		System.out.println("Codice eseguito dopo i blocchi condizionali\n\n");
 
-			else // Costrutto else senza parentesi graffe, possibile con una sola istruzione
-				System.out.println("La variabile myVal non può essere 20! Sei nel blocco else!");
-		} // Fine blocco if esterno
+		
+		
+		// Possiamo valutare più condizioni con gli operatori logici (AND, OR, NOT) e di confronto.
+		
 
-		else { // Blocco else esterno, fa riferimento all'opposto del primo blocco if
-			System.out.println("La variabile myVal non può essere ≥ 10! Sei nel blocco else esterno!");
-		}
+		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Codice eseguito dopo i blocchi condizionali");
+        // Esempio: Gestione dell'età
+        while (true) {
+            try {
+                System.out.println("Inserisci la tua età (-1 per uscire): ");
+                int age = scanner.nextInt();
+                scanner.nextLine(); // Pulisce il buffer
 
-		// Modifichiamo a piacere il valore della variabile per vedere in quale
-		// costrutto condizionale ricade
-		String yourName = "Filippo";
+                if (age == -1) {
+                    System.out.println("Alla prossima!");
+                    break;
+                } else if (age > 0 && age < 18) {
+                    System.out.println("Sei ancora minorenne. Non puoi votare!");
+                } else if (age >= 18 && age < 40) {
+                    System.out.println("Sei maggiorenne, puoi votare ma non essere votato!");
+                } else if (age >= 40 && age < 60) {
+                    System.out.println("I 40 sono i nuovi 20. Puoi anche essere votato!");
+                } else if (age >= 60 && age < 90) {
+                    System.out.println("I 60 sono i nuovi 30. Puoi anche fare da presidente della Repubblica Italiana.");
+                } else if (age >= 90) {
+                    System.out.println("A 90 puoi fare al massimo il Papa.");
+                } else {
+                    System.out.println("Numero non valido!");
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Errore: Devi inserire un numero intero!");
+                scanner.nextLine(); // Ripristino scanner per evitare loop infinito
+            } catch (Exception e) {
+            	System.err.println("Errore durante la lettura dell'età.");
+                scanner.nextLine(); // Ripristino scanner per evitare loop infinito
+            }
+        }
 
-		if (yourName == "Alfonso")
-			System.out.println("Ciao Alfonso!");
+        // Esempio: Gestione del nome
+        System.out.println("\nScegli il nome tra Beatrice, Filippa, Gianpiero o Ugo, oppure scrivi \"q\" per uscire.");
 
-		else if (yourName == "Gianpiero")
-			System.out.println("Ciao Gianpiero!");
+        while (true) {
+            try {
+                String name = scanner.nextLine().trim(); // Rimuove eventuali spazi superflui
 
-		else if (yourName == "Marco") {
-			System.out.println("Ciao Marco!");
+                if (name.equalsIgnoreCase("q")) {
+                    System.out.println("Alla prossima!");
+                    break;
+                } else if (name.equalsIgnoreCase("Beatrice")) {
+                    System.out.println("Ciao Beatrice! Vuoi salutare qualcun altro?");
+                } else if (name.equalsIgnoreCase("Gianpiero")) {
+                    System.out.println("Ciao Gianpiero! Vuoi salutare qualcun altro?");
+                } else if (name.equalsIgnoreCase("Ugo")) {
+                    System.out.println("Ciao Ugo! Vuoi salutare qualcun altro?");
+                } else if (name.equalsIgnoreCase("Filippa") || name.equalsIgnoreCase("Gianpiero")) {
+                    System.out.println("Voi due potete entrare! Vuoi salutare qualcun altro?");
+                } else {
+                    System.out.println("Neanche Ugo ti chiami? Forse mi sto confondendo con qualcun altro.");
+                }
+            } catch (Exception e) {
+                System.err.println("Errore durante la lettura del nome.");
+                scanner.nextLine(); // Ripristino scanner per evitare loop infinito
+            }
+        }
 
-		} else {
-			System.out.println("Neanche Marco ti chiami? Forse mi sto confondendo con qualcun altro.");
-		}
+        scanner.close();
+    
+		
+		
+		
+	
+        // --- Switch case
+		
+		System.out.println("\n\nSwitch case");
 
-		// --- Switch case
 
 		String fruit = "Cocomero"; // Prova tutti i valori dei case, o anche altri che non esistono
 
